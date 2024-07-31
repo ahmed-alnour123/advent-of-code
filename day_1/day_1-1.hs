@@ -15,6 +15,6 @@ filterNums :: String -> String
 filterNums xs = filter isNumber xs
 
 firstLast :: String -> String
-firstLast [] = ""
-firstLast [a] = [a, a]
-firstLast (x:xs) = [x, last xs]
+firstLast []      = ""
+firstLast [a]     = [a, a]
+firstLast (x:xs)  = [x, last xs]
