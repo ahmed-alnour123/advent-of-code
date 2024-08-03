@@ -1,5 +1,5 @@
-# advent-of-code-2023
+# advent-of-code
 
 ---
 
-my submissions for Advent Of Code 2023 problems
+my submissions for Advent Of Code problems
