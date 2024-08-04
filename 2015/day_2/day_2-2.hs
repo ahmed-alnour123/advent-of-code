@@ -5,7 +5,6 @@ main = do
   let nums = map (quickSort . map read) parsed
   let sizes = map getSize nums
   print $ sum sizes
-  -- print $ quickSort [5, 13, 23]
 
 parseLine :: String -> [String]
 parseLine [] = []
