@@ -6,15 +6,10 @@ main = do
 
 
 next :: String -> String
-next s@['z', 'z', 'z', 'z', 'z', 'z', 'z', 'z'] = s
-next s@[l, 'z', 'z', 'z', 'z', 'z', 'z', 'z']   = succ l : "aaaaaaa"
-next s@[_, l, 'z', 'z', 'z', 'z', 'z', 'z']     = take 1 s ++ [succ l] ++ "aaaaaa"
-next s@[_, _, l, 'z', 'z', 'z', 'z', 'z']       = take 2 s ++ [succ l] ++ "aaaaa"
-next s@[_, _, _, l, 'z', 'z', 'z', 'z']         = take 3 s ++ [succ l] ++ "aaaa"
-next s@[_, _, _, _, l, 'z', 'z', 'z']           = take 4 s ++ [succ l] ++ "aaa"
-next s@[_, _, _, _, _, l, 'z', 'z']             = take 5 s ++ [succ l] ++ "aa"
-next s@[_, _, _, _, _, _, l, 'z']               = take 6 s ++ [succ l] ++ "a"
-next s@[_, _, _, _, _, _, _, l]                 = take 7 s ++ [succ l]
+next s = reverse next'
+  where (zs, l:other) = span (== 'z') (reverse s)
+        len = length zs
+        next' = replicate len 'a' ++ (succ l : other)
 
 isValid :: String -> Bool
 isValid s = checkSequence s && checkForbidden s && checkPairs s
