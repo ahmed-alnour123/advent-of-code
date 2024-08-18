@@ -1,4 +1,4 @@
-### --- Day 16: Aunt Sue ---
+## --- Day 16: Aunt Sue ---
 
 Your Aunt Sue has given you a wonderful gift, and you'd like to send her a thank you card. However, there's a small problem: she signed it "From, Aunt Sue".
 
@@ -39,7 +39,7 @@ What is the number of the Sue that got you the gift?
 
 Your puzzle answer was `213`.
 
-### --- Part Two ---
+## --- Part Two ---
 
 As you're about to send the thank you note, something in the MFCSAM's instructions catches your eye. Apparently, it has an outdated retroencabulator, and so the output from the machine isn't exact values - some of them indicate ranges.
 
