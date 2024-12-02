@@ -4,16 +4,26 @@ main = do
   inputRaw <- readFile "./day_2.input"
   let input = map (map read . words) (lines inputRaw) :: [[Int]]
   let mapped = map isSafe input
-  let safe = length (filter id mapped)
-  let unsafe = length (filter not mapped)
-  print $ getLists [] [1, 2, 3]
+  let safe = length (filter snd mapped)
+  let unsafe = map fst $ filter (not . snd) mapped
+  let fixed = sum $ map tryFix unsafe
+  print $ safe + fixed
 
-isSafe :: [Int] -> Bool
-isSafe x = (checkInc x || checkDec x) && checkSpace x
+tryFix :: [Int] -> Int
+tryFix ls = fromEnum $ foldr ((||) . snd . isSafe) False $ generateLists ls
+
+isSafe :: [Int] -> ([Int], Bool)
+isSafe x = (x, (checkInc x || checkDec x) && checkSpace x)
+
+generateLists :: [Int] -> [[Int]]
+generateLists ls = filter (\x -> length x == len - 1) lists
+  where
+    lists = getLists [] ls
+    len = length ls
 
 getLists :: [Int] -> [Int] -> [[Int]]
 getLists acc [] = [acc]
-getLists acc (x : xs) = [xs] ++ getLists (acc ++ [x]) xs
+getLists acc (x : xs) = getLists (acc ++ [x]) xs ++ getLists acc xs
 
 checkInc :: [Int] -> Bool
 checkInc [x, xx] = x < xx
